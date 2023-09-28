@@ -1,16 +1,19 @@
-let express = require('express');
+const express = require('express');
+const http = require("http")
+const { Server } = require('socket.io');
 const router = require('./routers/route.js');
 
 
-let app = express();
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
 
 
 let port = process.env.port || 3000;
-var collection;
 
 app.use(express.static(__dirname + '/'));
-app.use( express.json());
+app.use(express.json());
 app.use(express.urlencoded({
     extended: false
 }));
@@ -23,11 +26,21 @@ app.get('/', (req, res) => {
 });
 
 
-app.use("/api",router)
+app.use("/api", router)
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+    console.log('user disconnected');
+    });
+    setInterval(()=>{
+    socket.emit('number', parseInt(Math.random()*10));
+    }, 1000);
+    });
 
 
 
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log('server started');
 });

@@ -1,12 +1,12 @@
 const addCards = (items) => {
     items.forEach(item => {
-        let itemToAppend =`
+        let itemToAppend = `
         <div class="col s4 center-align">
           <div class="card medium"><div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="${item.path}">
           </div>
           <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">${ item.title}<i class="material-icons right">more_vert</i></span>
+            <span class="card-title activator grey-text text-darken-4">${item.title}<i class="material-icons right">more_vert</i></span>
             <p><a href="${item.path}">${item.title}</a></p>
           </div>
           <div class="card-reveal">
@@ -37,7 +37,7 @@ function postCat(cat) {
         type: 'POST',
         data: cat,
         success: (result) => {
-            console.log("Result: ",result);
+            console.log("Result: ", result);
             if (result.statuscode === 201) {
                 alert('cat post successful');
 
@@ -64,5 +64,10 @@ $(document).ready(function () {
     });
     $('.modal').modal();
     getAllCats();
+    
+    let socket = io();
+    socket.on('number', (msg) => {
+        console.log('Random number: ' + msg);
+    })
 
 });
