@@ -1,3 +1,3 @@
-# SIT725-2023-t1-PRAC4
+# SIT725-2023-t1-PRAC6
 
-Adding MongoDB Database to the web application.
+Testing Web application using Mocha and Chai

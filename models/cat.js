@@ -18,4 +18,9 @@ async function getAllCats(callback) {
     callback(catsCollection)
 }
 
-module.exports = { postCat, getAllCats }
+async function deleteCat(cat,callback){
+    const result = await collection.deleteOne(cat);
+    callback(result)
+}
+
+module.exports = { postCat, getAllCats, deleteCat }

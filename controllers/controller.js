@@ -1,4 +1,4 @@
-const { getAllCats, postCat } = require("../models/cat");
+const { getAllCats, postCat, deleteCat } = require("../models/cat");
 
 
 const getAllCatsController = async (req, res) => {
@@ -25,5 +25,15 @@ const postCatController = (req, res) => {
     });
 }
 
+const deleteCatController = (req, res) => {
+    let cat = req.body;
+    deleteCat(cat,(result) => {
+        res.json({
+            statuscode: 200,
+            data: result,
+            message: 'success'
+        });
+    })
+}
 
-module.exports = { getAllCatsController,postCatController }
+module.exports = { getAllCatsController, postCatController, deleteCatController }
