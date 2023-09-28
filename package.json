@@ -8,9 +8,10 @@
     "start": "node server.js"
   },
   "author": "Kennedy Kipruto",
-  "repository": "https://github.com/KennedyKipruto/sit725-2023-t2-prac2",
+  "repository": "https://github.com/KennedyKipruto/sit725-2023-t2-prac3",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
   }
 }
